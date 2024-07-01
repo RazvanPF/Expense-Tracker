@@ -139,11 +139,15 @@ function getRandomNumber() {
 
 // Function to save the chart and table as PDF
 async function saveAsPDF() {
-    window.scrollTo(0, 0); // Scroll to the top of the page
-    await new Promise(resolve => setTimeout(resolve, 500)); // Add a small delay to ensure the page is fully scrolled
-
     const tableContainer = document.querySelector(".table-container");
     const chartContainer = document.querySelector(".chart-container");
+
+    window.scrollTo({
+        top: tableContainer.offsetTop - 20, // Scroll to the top of the table with some padding
+        behavior: 'smooth'
+    });
+
+    await new Promise(resolve => setTimeout(resolve, 1000)); // Add a delay to ensure the page is fully scrolled and rendered
 
     try {
         const tableCanvas = await html2canvas(tableContainer, {
