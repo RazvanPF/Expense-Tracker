@@ -143,8 +143,16 @@ async function saveAsPDF() {
     const chartContainer = document.querySelector(".chart-container");
 
     try {
-        const tableCanvas = await html2canvas(tableContainer);
-        const chartCanvas = await html2canvas(chartContainer);
+        const tableCanvas = await html2canvas(tableContainer, {
+            scale: 3, // Increase the scale for better resolution
+            useCORS: true, // Enable CORS
+            scrollY: 0, // Ensure the entire content is captured
+        });
+        const chartCanvas = await html2canvas(chartContainer, {
+            scale: 3, // Increase the scale for better resolution
+            useCORS: true, // Enable CORS
+            scrollY: 0, // Ensure the entire content is captured
+        });
 
         const imgDataTable = tableCanvas.toDataURL('image/png');
         const imgDataChart = chartCanvas.toDataURL('image/png');
@@ -156,7 +164,7 @@ async function saveAsPDF() {
 
         // Add the table to the first page
         pdf.addImage(imgDataTable, 'PNG', 0, 0, imgWidth, imgHeightTable);
-        
+
         // Add the chart to the next page
         pdf.addPage();
         pdf.addImage(imgDataChart, 'PNG', 0, 0, imgWidth, imgHeightChart);
