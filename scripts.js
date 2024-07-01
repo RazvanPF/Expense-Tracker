@@ -142,17 +142,20 @@ async function saveAsPDF() {
     const tableContainer = document.querySelector(".table-container");
     const chartContainer = document.querySelector(".chart-container");
 
+    // Scroll to the top of the table
     window.scrollTo({
         top: tableContainer.offsetTop - 20, // Scroll to the top of the table with some padding
         behavior: 'smooth'
     });
 
-    await new Promise(resolve => setTimeout(resolve, 1000)); // Add a delay to ensure the page is fully scrolled and rendered
+    // Add a delay to ensure the page is fully scrolled and rendered
+    await new Promise(resolve => setTimeout(resolve, 1000));
 
     try {
         const tableCanvas = await html2canvas(tableContainer, {
             scale: 3, // Increase the scale for better resolution
             useCORS: true, // Enable CORS
+            scrollY: -window.scrollY // Offset the scroll position to capture the entire table
         });
         const chartCanvas = await html2canvas(chartContainer, {
             scale: 3, // Increase the scale for better resolution
