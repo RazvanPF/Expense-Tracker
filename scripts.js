@@ -151,6 +151,11 @@ async function saveAsPDF() {
     // Add a delay to ensure the page is fully scrolled and rendered
     await new Promise(resolve => setTimeout(resolve, 1000));
 
+    // Temporarily scale down the table for the screenshot
+    tableContainer.style.transform = 'scale(0.8)';
+    tableContainer.style.transformOrigin = 'top left';
+    tableContainer.style.width = '125%'; // Compensate for the scaling
+
     try {
         const tableCanvas = await html2canvas(tableContainer, {
             scale: 3, // Increase the scale for better resolution
@@ -161,6 +166,10 @@ async function saveAsPDF() {
             scale: 3, // Increase the scale for better resolution
             useCORS: true, // Enable CORS
         });
+
+        // Revert the scaling after capturing the screenshot
+        tableContainer.style.transform = '';
+        tableContainer.style.width = '';
 
         const imgDataTable = tableCanvas.toDataURL('image/png');
         const imgDataChart = chartCanvas.toDataURL('image/png');
