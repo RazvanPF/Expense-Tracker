@@ -8,26 +8,26 @@ body {
 
 h1 {
     text-align: center;
-    margin-top: 20px; /* Add some top margin for spacing */
+    margin-top: 20px; /* Some top margin for spacing */
 }
 
 .container {
     display: flex;
     justify-content: center; /* Center align items horizontally */
-    padding: 0 20px; /* Add padding to avoid sticking to page edges */
+    padding: 0 20px; /* Padding to avoid sticking to page edges */
     flex-wrap: wrap; /* Ensure items wrap to new row on smaller screens */
 }
 
 .table-container {
     flex: 1 1 30%; /* Set table container to occupy 30% of the row */
-    padding: 20px; /* Add padding inside the container */
+    padding: 20px; /* Padding inside the container */
     box-sizing: border-box;
     overflow-x: auto; /* Horizontal scroll only when necessary */
 }
 
 .chart-container {
     flex: 1 1 70%; /* Set chart container to occupy 70% of the row */
-    padding: 20px; /* Add padding inside the container */
+    padding: 20px; /* Padding inside the container */
     box-sizing: border-box;
 }
 
@@ -44,6 +44,15 @@ th, td {
     text-align: left;
     word-wrap: break-word; /* Wrap text if too long */
 }
+
+td {
+    font-size: 12px; /* Default font size for table data */
+}
+
+td:first-child {
+    font-size: 14px; /* Change font size for the months column */
+}
+
 
 th {
     background-color: #7964ff;
