@@ -20,7 +20,7 @@ months.forEach(month => {
 
 let myChart; // Define myChart outside of the updateChart function
 
-// Initialize the chart
+// Function to initialize the chart
 function initializeChart() {
     const ctx = document.getElementById('myChart').getContext('2d');
     myChart = new Chart(ctx, {
@@ -64,7 +64,7 @@ function initializeChart() {
     });
 }
 
-// Update the chart
+// Function to update the chart
 function updateChart() {
     const incomes = [];
     const expenses = [];
@@ -94,7 +94,7 @@ function updateChart() {
     myChart.update();
 }
 
-// Clear all input fields and the chart
+// Function to clear all input fields and the chart
 function clearAll() {
     document.querySelectorAll('.monthly-income').forEach(input => {
         input.value = '';
@@ -115,7 +115,7 @@ function clearAll() {
     initializeChart(); // Re-initialize the chart with empty data
 }
 
-// Populate table with random numbers
+// Function to populate table with random numbers
 function populateRandom() {
     document.querySelectorAll('.monthly-income').forEach(input => {
         input.value = getRandomNumber();
@@ -132,12 +132,12 @@ function populateRandom() {
     updateChart(); // Update chart after populating random numbers
 }
 
-// Generate random number between 1 and 100000
+// Function to generate random number between 1 and 100000
 function getRandomNumber() {
     return Math.floor(Math.random() * 100000) + 1;
 }
 
-// Save the chart and table as PDF
+// Function to save the chart and table as PDF
 async function saveAsPDF() {
     const tableContainer = document.querySelector(".table-container");
     const chartContainer = document.querySelector(".chart-container");
@@ -153,16 +153,13 @@ async function saveAsPDF() {
         const pageHeight = 295; // Height of A4 in mm
         const imgHeightTable = tableCanvas.height * imgWidth / tableCanvas.width;
         const imgHeightChart = chartCanvas.height * imgWidth / chartCanvas.width;
-        let heightLeft = imgHeightTable;
 
+        // Add the table to the first page
         pdf.addImage(imgDataTable, 'PNG', 0, 0, imgWidth, imgHeightTable);
-        heightLeft -= pageHeight;
-
-        if (heightLeft < 0) {
-            pdf.addPage();
-            heightLeft = 0;
-        }
-        pdf.addImage(imgDataChart, 'PNG', 0, heightLeft + 10, imgWidth, imgHeightChart); // Adjust position for the chart image
+        
+        // Add the chart to the next page
+        pdf.addPage();
+        pdf.addImage(imgDataChart, 'PNG', 0, 0, imgWidth, imgHeightChart);
 
         pdf.save('expense-tracker.pdf');
     } catch (error) {
