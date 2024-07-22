@@ -5,7 +5,7 @@ function createInputRow(month) {
         <td>${month}</td>
         <td><input type="number" class="monthly-income" value="" style="width: 60px;"></td>
         <td><input type="number" class="monthly-expenses" value="" style="width: 60px;"></td>
-        <td><input type="number" class="monthly-savings" value="" style="width: 60px;"></td>
+        <td><input type="number" class="monthly-savings" value="" style="width: 60px;" readonly></td>
     `;
     return row;
 }
@@ -125,10 +125,7 @@ function populateRandom() {
         input.value = getRandomNumber();
     });
 
-    document.querySelectorAll('.monthly-savings').forEach(input => {
-        input.value = getRandomNumber();
-    });
-
+    updateSavings(); // Update savings after populating random numbers
     updateChart(); // Update chart after populating random numbers
 }
 
@@ -192,7 +189,67 @@ async function saveAsPDF() {
     }
 }
 
+// Update savings when income or expenses change
+function updateSavings() {
+    document.querySelectorAll('tr').forEach(row => {
+        const incomeInput = row.querySelector('.monthly-income');
+        const expensesInput = row.querySelector('.monthly-expenses');
+        const savingsInput = row.querySelector('.monthly-savings');
+
+        if (incomeInput && expensesInput && savingsInput) {
+            const income = parseFloat(incomeInput.value) || 0;
+            const expenses = parseFloat(expensesInput.value) || 0;
+            const savings = income - expenses;
+            savingsInput.value = savings.toFixed(2);
+        }
+    });
+}
+
+// Attach event listeners to income and expenses inputs to update savings automatically
+document.addEventListener('input', event => {
+    if (event.target.classList.contains('monthly-income') || event.target.classList.contains('monthly-expenses')) {
+        updateSavings();
+        updateChart(); // Update chart after savings change
+    }
+});
+
 // Initialize the chart when the page loads
 document.addEventListener('DOMContentLoaded', () => {
     initializeChart();
 });
+
+// Function to export data to CSV
+function exportToCSV() {
+    let csvContent = "data:text/csv;charset=utf-8,Month,Monthly Income,Monthly Expenses,Savings\n";
+    
+    // Select all rows except the header row
+    const rows = document.querySelectorAll('#inputRows tr');
+
+    // Iterate over each row to extract data
+    rows.forEach(row => {
+        const monthCell = row.querySelector('td:first-child');
+        const incomeInput = row.querySelector('.monthly-income');
+        const expensesInput = row.querySelector('.monthly-expenses');
+        const savingsInput = row.querySelector('.monthly-savings');
+
+        // Check if all elements are found in the row
+        if (monthCell && incomeInput && expensesInput && savingsInput) {
+            const month = monthCell.textContent.trim();
+            const income = incomeInput.value.trim();
+            const expenses = expensesInput.value.trim();
+            const savings = savingsInput.value.trim();
+
+            csvContent += `${month},${income},${expenses},${savings}\n`;
+        }
+    });
+
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", "expense_data.csv");
+    document.body.appendChild(link);
+    link.click();
+
+    // Clean up the link element after clicking
+    document.body.removeChild(link);
+}
