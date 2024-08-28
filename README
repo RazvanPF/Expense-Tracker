@@ -1,0 +1,49 @@
+# Expense Tracker
+
+Expense Tracker is a user-friendly web-based tool designed to help you manage your finances by tracking your monthly income, expenses, and savings. The application provides an easy-to-use interface for data entry and a dynamic chart to visualize your financial data over time.
+
+# Usage
+In the Expense Tracker, you can input your monthly income and expenses, which automatically calculates your savings. The data is then visualized in a chart that tracks these variables over the course of the year. You can also export your data as a PDF or CSV file for further analysis or record-keeping.
+
+# Features
+Dynamic Input Table: Enter your financial data for each month, including:
+
+- Monthly Income: Input your monthly earnings.
+- Monthly Expenses: Input your monthly expenditures.
+- Savings Calculation: Automatically calculates and displays your savings as the difference between income and expenses.
+- Interactive Chart:
+    Visualizes your financial data over the year, with lines representing income, expenses, and savings.
+    The chart updates in real-time as you enter or modify your data.
+- PDF Export:
+    Save a snapshot of your financial table and chart as a PDF file.
+    Ideal for sharing or printing your financial summaries.
+- CSV Export:
+    Export your financial data to a CSV file, which can be opened in spreadsheet software for further analysis.
+- Random Data Population:
+    Automatically populate the table with random income and expense values for testing or demonstration purposes.
+- Clear Data:
+    Quickly clear all entered data and reset the chart to start fresh.
+
+# Controls
+- Update Chart: Click the "Update" button after entering or modifying data to refresh the chart.
+- Clear Data: Click the "Clear" button to erase all inputs and reset the chart.
+- Random Data: Click the "Random" button to fill the table with random data for quick testing.
+- Export to PDF: Click the "Save as PDF" button to generate a PDF of your table and chart.
+- Export to CSV: Click the "Export to CSV" button to download your data in CSV format.
+
+# Data Visualization
+The app presents your financial data in a clear, easy-to-read format:
+
+- Monthly Income: Displayed in blue on the chart.
+- Monthly Expenses: Displayed in red on the chart.
+- Savings: Displayed in green on the chart.
+
+# License
+This project is open-source. Feel free to use, modify, and distribute it as you wish.
+
+# Credits
+- Developed by [Razvan Faraon]
+- Powered by HTML, CSS, JavaScript, and Chart.js.
+- Additional libraries: html2canvas and jsPDF for PDF export functionality.
+
+For any questions or support, feel free to reach out via [farirazvan@gmail.com].
