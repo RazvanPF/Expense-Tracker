@@ -53,6 +53,17 @@ td:first-child {
     font-size: 14px; /* Change font size for the months column */
 }
 
+.monthly-savings{
+    width: 100px !important;
+}
+
+.monthly-income{
+    width: 100px !important;
+}
+
+.monthly-expenses{
+    width: 100px !important;
+}
 
 th {
     background-color: #7964ff;
