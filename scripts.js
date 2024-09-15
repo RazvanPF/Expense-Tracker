@@ -3,9 +3,9 @@ function createInputRow(month) {
     const row = document.createElement('tr');
     row.innerHTML = `
         <td>${month}</td>
-        <td><input type="number" class="monthly-income" value="" style="width: 60px;"></td>
-        <td><input type="number" class="monthly-expenses" value="" style="width: 60px;"></td>
-        <td><input type="number" class="monthly-savings" value="" style="width: 60px;" readonly></td>
+        <td><input type="number" class="monthly-income" value=""></td>
+        <td><input type="number" class="monthly-expenses" value=""></td>
+        <td><input type="number" class="monthly-savings" value="" readonly></td>
     `;
     return row;
 }

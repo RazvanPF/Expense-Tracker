@@ -53,16 +53,16 @@ td:first-child {
     font-size: 14px; /* Change font size for the months column */
 }
 
-.monthly-savings{
-    width: 100px !important;
+.monthly-savings {
+    width: 100px;
 }
 
-.monthly-income{
-    width: 100px !important;
+.monthly-income {
+    width: 100px;
 }
 
-.monthly-expenses{
-    width: 100px !important;
+.monthly-expenses {
+    width: 100px;
 }
 
 th {
@@ -129,9 +129,22 @@ button:hover {
     .chart-container {
         margin-top: 30px; /* Adjust top margin for mobile */
     }
-}
 
     input[readonly] {
         background-color: #f0f0f0;
         cursor: not-allowed;
     }
+
+    .monthly-savings{
+        width: 60px;
+    }
+    
+    .monthly-income{
+        width: 60px;
+        margin-left: 5px;
+    }
+    
+    .monthly-expenses{
+        width: 60px;
+    }
+}
